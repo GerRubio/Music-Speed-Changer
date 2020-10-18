@@ -2,7 +2,6 @@ import sys
 
 from spotify import Song
 
-
 '''Information about headers in datafile
 0: Track name
 1: Artist name

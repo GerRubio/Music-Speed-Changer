@@ -14,10 +14,13 @@ from spotify import Song
 if __name__ == '__main__':
     input_file = 'top50.csv'
     output_file = 'top50_mod.csv'
-    relative_bpm = int(sys.argv[1])  # Read keyboard input
-
+    # relative_bpm = int(sys.argv[1])  # Read keyboard input
+    
     # Load songs (from input_file)
-
+    songs = Song.load_songs(input_file)
+    
     # Change speed of all songs
-
+    # songs = Song.change_speed(relative_bpm)
+    
     # Save songs (to output_file)
+    songs = Song.save_songs(output_file, songs)

@@ -1,14 +1,15 @@
 import csv
 
 class Song:
+    
     def __init__(self, track, artist, genre, bpm, energy, danceability, length):
         self.track = track
         self.artist = artist
         self.genre = genre
-        self. bpm = bpm
-        self.energy = energy
-        self.danceability = danceability
-        self.length = length
+        self.bpm = int(bpm)
+        self.energy = int(energy)
+        self.danceability = int(danceability)
+        self.length = int(length)
 
     def __str__(self):
         return f'''Information about headers in datafile:
@@ -22,8 +23,15 @@ class Song:
             '''
 
     def change_speed(self, relative_bpm):         
-        pass
+        self.bpm += relative_bpm
 
+        if relative_bpm > 0:
+            self.energy += relative_bpm + 2
+            self.danceability += relative_bpm + 3
+        elif relative_bpm < 0:
+            self.energy += relative_bpm - 2
+            self.danceability += relative_bpm - 3
+            
     @staticmethod
     def load_songs(path):
         songs = []
@@ -34,7 +42,7 @@ class Song:
             for row in reader:
                 song = Song(*row)
                 songs.append(song)
-                
+
         return songs
     
     @staticmethod
